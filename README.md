@@ -19,3 +19,12 @@ Running the container
     --env DIRECTORIES_TO_MONITOR="/opt/tomcat/logs,/var/log" \
     --env TAGS="my-super-files" \
     cloudrity/loggly
+
+Docker container
+====================
+
+Docker container URL:
+
+    https://registry.hub.docker.com/u/garland/loggly/
+
+    
