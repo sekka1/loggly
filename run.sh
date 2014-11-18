@@ -10,13 +10,13 @@ sed -i "s/checkIfLogsMadeToLoggly$/echo \"Not checking...\"/g" configure-linux.s
 sed -i "s/checkIfFileLogsMadeToLoggly$//g" configure-file-monitoring.sh
 sed -i "s/curl .*//g" configure-file-monitoring.sh
 
-# Configure Syslog Daemon
-#sudo bash configure-linux.sh -a apprity -t ${LOGGLY_TOKEN} -u ${USERNAME}
-
+# Split by a comma on the directory list
 echo ${DIRECTORIES_TO_MONITOR} | sed -n 1'p' | tr ',' '\n' | while read directory_path; do
     echo ${directory_path}
 
+    # For each directory list all the files
     for file in $( ls ${directory_path} ); do
+        # If it is a file, run the configure-file-monitoring Loggly script to add it into rsyslog
         if [ -f ${directory_path}/${file} ]; then
             echo item: ${file}
             sudo bash configure-file-monitoring.sh -a ${LOGGLY_ACCOUNT} -t ${LOGGLY_TOKEN} -u ${USERNAME} -p "${PASSWORD}" -f "${directory_path}/${file}" -l ${file} -tag "${TAGS}"
