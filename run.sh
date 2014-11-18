@@ -26,7 +26,8 @@ done
 
 
 # Kill /usr/sbin/rsyslogd
-
+PID=$(pidof rsyslogd)
+kill -9 ${PID}
 
 # start in foreground
-exec /usr/sbin/rsyslogd -n
+/usr/sbin/rsyslogd -n
