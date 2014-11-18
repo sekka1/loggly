@@ -1,7 +1,14 @@
 #!/bin/sh -x
 
 # Get Loggly file setup script
+curl -O https://www.loggly.com/install/configure-linux.sh
 curl -O https://www.loggly.com/install/configure-file-monitoring.sh
+
+# Remove checkIfFileLogsMadeToLoggly() function from script
+# This takes too long.
+sed -i "s/checkIfLogsMadeToLoggly$/echo \"Not checking...\"/g" configure-linux.sh
+sed -i "s/checkIfFileLogsMadeToLoggly$//g" configure-file-monitoring.sh
+sed -i "s/curl .*//g" configure-file-monitoring.sh
 
 # Configure Syslog Daemon
 #sudo bash configure-linux.sh -a apprity -t ${LOGGLY_TOKEN} -u ${USERNAME}
@@ -16,3 +23,10 @@ echo ${DIRECTORIES_TO_MONITOR} | sed -n 1'p' | tr ',' '\n' | while read director
         fi
     done
 done
+
+
+# Kill /usr/sbin/rsyslogd
+
+
+# start in foreground
+exec /usr/sbin/rsyslogd -n
