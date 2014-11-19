@@ -8,10 +8,17 @@ This container uses the Loggly scripts to setup Syslog:
 
     https://apprity.loggly.com/sources/setup/file_monitoring_linux
 
-Running the container
+Using the Container
 =======================
 
+You can attached to another container if you exposed a data volume from the target containers.  This is
+useful in some scenarios.  For example, if you had a Tomcat or web server container that is outputting
+logs.  You add a data volume when starting that container (https://docs.docker.com/userguide/dockervolumes/#adding-a-data-volume).
+Then using this container, you can attach to it using the --volumes-from docker flag to give this Loggly
+container access to it.
+
     docker run -d \
+    --volumes-from webui \
     --env LOGGLY_TOKEN=<TOKEN> \
     --env LOGGLY_ACCOUNT=<ACCOUNT_NAME> \
     --env USERNAME=<USERNAME> \
@@ -27,4 +34,3 @@ Docker container URL:
 
     https://registry.hub.docker.com/u/garland/loggly/
 
-    
