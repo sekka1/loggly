@@ -25,7 +25,10 @@ container access to it.
     --env PASSWORD=<PASSWORD> \
     --env DIRECTORIES_TO_MONITOR="/opt/tomcat/logs,/var/log" \
     --env TAGS="my-super-files" \
+    --env INTERVAL_TIME=3600 \
     cloudrity/loggly
+
+* INTERVAL_TIME - since the Loggly file monitor script is a one time add.  If new files shows up in the directories they are not sent to Loggly.  The interval time will restart the entire process per the time which will add in any new files in the directories that you are monitoring.
 
 Docker container
 ====================
