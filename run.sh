@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
 # Get Loggly file setup script
 curl -O https://www.loggly.com/install/configure-linux.sh
@@ -29,5 +29,7 @@ done
 PID=$(pidof rsyslogd)
 kill -9 ${PID}
 
-# start in foreground
-/usr/sbin/rsyslogd -n
+# start in backgroun
+echo "Starting rsyslogd..."
+/usr/sbin/rsyslogd 
+echo "Started."

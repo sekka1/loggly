@@ -11,6 +11,8 @@ RUN apt-get install -y wget curl vim
 WORKDIR /opt
 
 ADD ./run.sh /opt/run.sh
+ADD ./interval.sh /opt/interval.sh
 RUN chmod 777 run.sh
+RUN chmod 777 interval.sh
 
-CMD ["./run.sh"]
+CMD ["./interval.sh"]
