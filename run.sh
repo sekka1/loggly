@@ -19,7 +19,7 @@ echo ${DIRECTORIES_TO_MONITOR} | sed -n 1'p' | tr ',' '\n' | while read director
         # If it is a file, run the configure-file-monitoring Loggly script to add it into rsyslog
         if [ -f ${directory_path}/${file} ]; then
             echo item: ${file}
-            sudo bash configure-file-monitoring.sh -a ${LOGGLY_ACCOUNT} -t ${LOGGLY_TOKEN} -u ${USERNAME} -p "${PASSWORD}" -f "${directory_path}/${file}" -l ${file} -tag "${TAGS}"
+            sudo bash configure-file-monitoring.sh -s -a ${LOGGLY_ACCOUNT} -t ${LOGGLY_TOKEN} -u ${USERNAME} -p "${PASSWORD}" -f "${directory_path}/${file}" -l ${file} -tag "${TAGS}"
         fi
     done
 done

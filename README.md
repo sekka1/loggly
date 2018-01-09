@@ -36,4 +36,9 @@ Docker container
 Docker container URL:
 
     https://registry.hub.docker.com/u/garland/loggly/
+    
+
+Change log
+==========
+8th Oct 2017 - Run in non interactive mode
 
